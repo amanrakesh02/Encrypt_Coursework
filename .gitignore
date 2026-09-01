@@ -1,0 +1,15 @@
+# Icarus Verilog build products
+*.vvp
+*.vcd
+*.sizer
+
+# submission archive
+solution.tar.gz
+
+# Windows download markers
+*Zone.Identifier
+*:Zone.Identifier
+
+# editor / OS
+.vscode/
+.DS_Store

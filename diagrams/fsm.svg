@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" width="760" height="340" font-family="Helvetica, Arial, sans-serif">
+  <rect width="760" height="340" fill="#fbfbfd"/>
+  <text x="380" y="32" text-anchor="middle" font-size="16" font-weight="600" fill="#1a1a2e">encrypt_iter control FSM</text>
+
+  <!-- states -->
+  <circle cx="110" cy="150" r="46" fill="#e8ecf7" stroke="#5566a8" stroke-width="1.6"/>
+  <text x="110" y="146" text-anchor="middle" font-size="13" font-weight="600" fill="#2a3560">Wait</text>
+  <text x="110" y="162" text-anchor="middle" font-size="10" fill="#2a3560">Q = 00</text>
+
+  <circle cx="290" cy="150" r="46" fill="#e8ecf7" stroke="#5566a8" stroke-width="1.6"/>
+  <text x="290" y="146" text-anchor="middle" font-size="13" font-weight="600" fill="#2a3560">Load</text>
+  <text x="290" y="162" text-anchor="middle" font-size="10" fill="#2a3560">Q = 01</text>
+
+  <circle cx="470" cy="150" r="46" fill="#dff0e4" stroke="#3f8656" stroke-width="1.6"/>
+  <text x="470" y="146" text-anchor="middle" font-size="13" font-weight="600" fill="#24583a">Round</text>
+  <text x="470" y="162" text-anchor="middle" font-size="10" fill="#24583a">Q = 10</text>
+
+  <circle cx="650" cy="150" r="46" fill="#fdeedd" stroke="#c07a2c" stroke-width="1.6"/>
+  <circle cx="650" cy="150" r="40" fill="none" stroke="#c07a2c" stroke-width="1"/>
+  <text x="650" y="146" text-anchor="middle" font-size="13" font-weight="600" fill="#8a5316">Done</text>
+  <text x="650" y="162" text-anchor="middle" font-size="10" fill="#8a5316">Q = 11</text>
+
+  <!-- transitions -->
+  <line x1="156" y1="150" x2="242" y2="150" stroke="#4b5563" stroke-width="1.6" marker-end="url(#a)"/>
+  <text x="199" y="142" text-anchor="middle" font-size="11" fill="#374151">req = 1</text>
+
+  <line x1="336" y1="150" x2="422" y2="150" stroke="#4b5563" stroke-width="1.6" marker-end="url(#a)"/>
+  <text x="379" y="142" text-anchor="middle" font-size="11" fill="#374151">i ← 0</text>
+
+  <line x1="516" y1="150" x2="602" y2="150" stroke="#4b5563" stroke-width="1.6" marker-end="url(#a)"/>
+  <text x="559" y="142" text-anchor="middle" font-size="11" fill="#374151">i = 15</text>
+
+  <!-- self loop on Round -->
+  <path d="M 448 108 A 40 40 0 1 1 500 112" fill="none" stroke="#3f8656" stroke-width="1.6" marker-end="url(#ag)"/>
+  <text x="470" y="62" text-anchor="middle" font-size="11" fill="#24583a">i &lt; 15 : i ← i+1</text>
+  <text x="470" y="76" text-anchor="middle" font-size="10" fill="#24583a">xl, xr, kx advance</text>
+
+  <!-- self loop on Wait -->
+  <path d="M 88 108 A 38 38 0 1 1 138 112" fill="none" stroke="#5566a8" stroke-width="1.6" marker-end="url(#ab)"/>
+  <text x="110" y="68" text-anchor="middle" font-size="11" fill="#2a3560">req = 0</text>
+
+  <!-- Done back to Wait -->
+  <path d="M 650 196 L 650 250 L 110 250 L 110 196" fill="none" stroke="#c0392b" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="380" y="266" text-anchor="middle" font-size="11" fill="#c0392b">req = 0 — caller has taken the ciphertext</text>
+
+  <!-- reset -->
+  <line x1="110" y1="300" x2="110" y2="290" stroke="none"/>
+  <path d="M 40 218 L 40 150 L 62 150" fill="none" stroke="#6b7280" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#agr)"/>
+  <text x="40" y="234" text-anchor="middle" font-size="11" fill="#6b7280">rst</text>
+
+  <text x="380" y="306" text-anchor="middle" font-size="11" fill="#4b5563">ack is asserted combinationally as (Q == Done), so it needs no register of its own.</text>
+  <text x="380" y="323" text-anchor="middle" font-size="11" fill="#4b5563">Reset is exclusive with the case statement, so it always lands in Wait.</text>
+
+  <defs>
+    <marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#4b5563"/></marker>
+    <marker id="ag" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#3f8656"/></marker>
+    <marker id="ab" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#5566a8"/></marker>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#c0392b"/></marker>
+    <marker id="agr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#6b7280"/></marker>
+  </defs>
+</svg>

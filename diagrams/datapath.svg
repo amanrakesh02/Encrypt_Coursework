@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 470" width="880" height="470" font-family="Helvetica, Arial, sans-serif">
+  <rect width="880" height="470" fill="#fbfbfd"/>
+
+  <text x="440" y="30" text-anchor="middle" font-size="17" font-weight="600" fill="#1a1a2e">Three architectures over one shared round datapath</text>
+
+  <!-- ================= COMBINATORIAL ================= -->
+  <text x="24" y="72" font-size="13" font-weight="600" fill="#1a1a2e">encrypt_comb — 16 rounds unrolled in space</text>
+  <rect x="24" y="84" width="832" height="76" rx="6" fill="#ffffff" stroke="#c9ccd6"/>
+
+  <rect x="40" y="104" width="62" height="38" rx="4" fill="#e8ecf7" stroke="#5566a8"/>
+  <text x="71" y="128" text-anchor="middle" font-size="11" fill="#2a3560">IP / PC1</text>
+
+  <rect x="118" y="104" width="70" height="38" rx="4" fill="#dff0e4" stroke="#3f8656"/>
+  <text x="153" y="122" text-anchor="middle" font-size="11" fill="#24583a">round 0</text>
+  <text x="153" y="135" text-anchor="middle" font-size="9" fill="#24583a">+ key_sched</text>
+
+  <rect x="204" y="104" width="70" height="38" rx="4" fill="#dff0e4" stroke="#3f8656"/>
+  <text x="239" y="122" text-anchor="middle" font-size="11" fill="#24583a">round 1</text>
+  <text x="239" y="135" text-anchor="middle" font-size="9" fill="#24583a">+ key_sched</text>
+
+  <text x="310" y="128" text-anchor="middle" font-size="15" fill="#6b7280">· · ·</text>
+
+  <rect x="346" y="104" width="70" height="38" rx="4" fill="#dff0e4" stroke="#3f8656"/>
+  <text x="381" y="122" text-anchor="middle" font-size="11" fill="#24583a">round 15</text>
+  <text x="381" y="135" text-anchor="middle" font-size="9" fill="#24583a">+ key_sched</text>
+
+  <rect x="432" y="104" width="56" height="38" rx="4" fill="#e8ecf7" stroke="#5566a8"/>
+  <text x="460" y="128" text-anchor="middle" font-size="11" fill="#2a3560">FP</text>
+
+  <line x1="102" y1="123" x2="116" y2="123" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="188" y1="123" x2="202" y2="123" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="274" y1="123" x2="292" y2="123" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="328" y1="123" x2="344" y2="123" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="416" y1="123" x2="430" y2="123" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <text x="510" y="115" font-size="11" fill="#4b5563">No clock, no registers.</text>
+  <text x="510" y="132" font-size="11" fill="#4b5563">16 round instances built by a generate loop; result settles combinationally.</text>
+
+  <!-- ================= ITERATIVE ================= -->
+  <text x="24" y="200" font-size="13" font-weight="600" fill="#1a1a2e">encrypt_iter — one round reused over 16 cycles</text>
+  <rect x="24" y="212" width="832" height="112" rx="6" fill="#ffffff" stroke="#c9ccd6"/>
+
+  <rect x="40" y="248" width="62" height="38" rx="4" fill="#e8ecf7" stroke="#5566a8"/>
+  <text x="71" y="272" text-anchor="middle" font-size="11" fill="#2a3560">IP / PC1</text>
+
+  <rect x="130" y="248" width="74" height="38" rx="4" fill="#fdeedd" stroke="#c07a2c"/>
+  <text x="167" y="266" text-anchor="middle" font-size="11" fill="#8a5316">registers</text>
+  <text x="167" y="279" text-anchor="middle" font-size="9" fill="#8a5316">xl, xr, kx, i</text>
+
+  <rect x="240" y="248" width="86" height="38" rx="4" fill="#dff0e4" stroke="#3f8656"/>
+  <text x="283" y="266" text-anchor="middle" font-size="11" fill="#24583a">round</text>
+  <text x="283" y="279" text-anchor="middle" font-size="9" fill="#24583a">+ key_sched</text>
+
+  <rect x="410" y="248" width="56" height="38" rx="4" fill="#e8ecf7" stroke="#5566a8"/>
+  <text x="438" y="272" text-anchor="middle" font-size="11" fill="#2a3560">FP</text>
+
+  <line x1="102" y1="267" x2="128" y2="267" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="204" y1="267" x2="238" y2="267" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="326" y1="267" x2="408" y2="267" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- feedback path -->
+  <path d="M 300 286 L 300 308 L 167 308 L 167 288" fill="none" stroke="#c0392b" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="234" y="322" text-anchor="middle" font-size="10" fill="#c0392b">feedback: 16 iterations</text>
+
+  <text x="510" y="240" font-size="11" fill="#4b5563">One physical round; a 4-state FSM sequences it.</text>
+  <text x="510" y="257" font-size="11" fill="#4b5563">req / ack handshake tells the caller when c is valid.</text>
+  <text x="510" y="274" font-size="11" fill="#4b5563">Smallest area, one block in flight at a time.</text>
+
+  <!-- ================= PIPELINED ================= -->
+  <text x="24" y="364" font-size="13" font-weight="600" fill="#1a1a2e">encrypt_pipe — 16 rounds unrolled, registers between each</text>
+  <rect x="24" y="376" width="832" height="76" rx="6" fill="#ffffff" stroke="#c9ccd6"/>
+
+  <rect x="40" y="396" width="52" height="38" rx="4" fill="#e8ecf7" stroke="#5566a8"/>
+  <text x="66" y="420" text-anchor="middle" font-size="11" fill="#2a3560">IP/PC1</text>
+
+  <rect x="106" y="396" width="60" height="38" rx="4" fill="#dff0e4" stroke="#3f8656"/>
+  <text x="136" y="420" text-anchor="middle" font-size="11" fill="#24583a">round 0</text>
+  <rect x="170" y="396" width="14" height="38" rx="2" fill="#fdeedd" stroke="#c07a2c"/>
+
+  <rect x="196" y="396" width="60" height="38" rx="4" fill="#dff0e4" stroke="#3f8656"/>
+  <text x="226" y="420" text-anchor="middle" font-size="11" fill="#24583a">round 1</text>
+  <rect x="260" y="396" width="14" height="38" rx="2" fill="#fdeedd" stroke="#c07a2c"/>
+
+  <text x="298" y="420" text-anchor="middle" font-size="15" fill="#6b7280">· · ·</text>
+
+  <rect x="326" y="396" width="64" height="38" rx="4" fill="#dff0e4" stroke="#3f8656"/>
+  <text x="358" y="420" text-anchor="middle" font-size="11" fill="#24583a">round 15</text>
+  <rect x="394" y="396" width="14" height="38" rx="2" fill="#fdeedd" stroke="#c07a2c"/>
+
+  <rect x="420" y="396" width="48" height="38" rx="4" fill="#e8ecf7" stroke="#5566a8"/>
+  <text x="444" y="420" text-anchor="middle" font-size="11" fill="#2a3560">FP</text>
+
+  <line x1="92" y1="415" x2="104" y2="415" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="184" y1="415" x2="194" y2="415" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="274" y1="415" x2="284" y2="415" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="312" y1="415" x2="324" y2="415" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="408" y1="415" x2="418" y2="415" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <text x="510" y="407" font-size="11" fill="#4b5563">Narrow orange bars are the pipeline registers (xl, xr, kx per stage).</text>
+  <text x="510" y="424" font-size="11" fill="#4b5563">Largest area; accepts a new block every cycle once full.</text>
+
+  <defs>
+    <marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="2.5" orient="auto">
+      <path d="M0,0 L6,2.5 L0,5 z" fill="#4b5563"/>
+    </marker>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="2.5" orient="auto">
+      <path d="M0,0 L6,2.5 L0,5 z" fill="#c0392b"/>
+    </marker>
+  </defs>
+</svg>
