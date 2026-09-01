@@ -1,5 +1,8 @@
 # DES in Verilog — Design Writeup
 
+**This is an AI generated markdown file to explain my coursework. All actual 
+coursework is my own.**
+
 Three hardware implementations of the DES block cipher, built from one shared
 round datapath: a **combinatorial** design, an **iterative** design, and a
 **16-stage pipeline**. Written in Verilog, simulated and verified under Icarus
