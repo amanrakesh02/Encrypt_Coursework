@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" width="760" height="340" font-family="Helvetica, Arial, sans-serif">
-  <rect width="760" height="340" fill="#fbfbfd"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" width="760" height="360" font-family="Helvetica, Arial, sans-serif">
+  <rect width="760" height="360" fill="#fbfbfd"/>
   <text x="380" y="32" text-anchor="middle" font-size="16" font-weight="600" fill="#1a1a2e">encrypt_iter control FSM — 18 cycles per block</text>
 
   <circle cx="110" cy="150" r="46" fill="#e8ecf7" stroke="#5566a8" stroke-width="1.6"/>
@@ -39,11 +39,13 @@
 
   <path d="M 650 196 L 650 250 L 110 250 L 110 196" fill="none" stroke="#c0392b" stroke-width="1.6" marker-end="url(#ar)"/>
   <text x="380" y="266" text-anchor="middle" font-size="11" fill="#c0392b">req = 0 — caller has taken the ciphertext</text>
+  <text x="380" y="332" text-anchor="middle" font-size="11" fill="#4b5563">Wait and Done both hold on the caller, so sustained throughput is ~21 cycles per block, not 18.</text>
 
   <path d="M 40 218 L 40 150 L 62 150" fill="none" stroke="#6b7280" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#agr)"/>
   <text x="40" y="234" text-anchor="middle" font-size="11" fill="#6b7280">rst</text>
 
   <text x="380" y="298" text-anchor="middle" font-size="11" fill="#4b5563">ack is asserted combinationally as (Q == Done), so it needs no register of its own.</text>
+  <text x="380" y="298" text-anchor="middle" font-size="11" fill="#4b5563">Reset is exclusive with the case statement, so it always lands in Wait.</text>
   <text x="380" y="315" text-anchor="middle" font-size="11" fill="#4b5563">The loop exits at i = 15, not 16 — the sixteenth result is already on the round's combinational outputs.</text>
 
   <defs>
