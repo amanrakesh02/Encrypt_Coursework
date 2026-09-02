@@ -1,7 +1,7 @@
 # DES in Verilog — Design Writeup
 
-**This is an AI generated markdown file to explain my coursework. All actual 
-coursework is my own - no use of AI. Coursework completed in December 2025.**
+**This is an AI generated markdown file to explain my coursework. ALL ACTUAL
+COURSEWORK IS MY OWN - no use of AI. Coursework completed in December 2025.**
 
 Three hardware implementations of the DES block cipher, built from one shared
 round datapath: a **combinatorial** design, an **iterative** design, and a
