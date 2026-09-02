@@ -3,7 +3,7 @@
 
   <text x="440" y="30" text-anchor="middle" font-size="17" font-weight="600" fill="#1a1a2e">Three architectures over one shared round datapath</text>
 
-  <!-- ================= COMBINATIONAL ================= -->
+  <!-- COMBINATIONAL -->
   <text x="24" y="72" font-size="13" font-weight="600" fill="#1a1a2e">encrypt_comb — 16 rounds unrolled in space</text>
   <rect x="24" y="84" width="832" height="76" rx="6" fill="#ffffff" stroke="#c9ccd6"/>
 
@@ -36,7 +36,7 @@
   <text x="510" y="115" font-size="11" fill="#4b5563">No clock, no registers. Result settles combinationally.</text>
   <text x="510" y="132" font-size="11" fill="#4b5563">Round 0 instantiated separately; rounds 1–15 by a generate loop.</text>
 
-  <!-- ================= ITERATIVE ================= -->
+  <!-- ITERATIVE -->
   <text x="24" y="200" font-size="13" font-weight="600" fill="#1a1a2e">encrypt_iter — one round reused, 18 cycles per block</text>
   <rect x="24" y="212" width="832" height="112" rx="6" fill="#ffffff" stroke="#c9ccd6"/>
 
@@ -62,10 +62,11 @@
   <text x="234" y="322" text-anchor="middle" font-size="10" fill="#c0392b">feedback: 16 rounds</text>
 
   <text x="510" y="240" font-size="11" fill="#4b5563">One physical round; a 4-state FSM sequences it.</text>
-  <text x="510" y="257" font-size="11" fill="#4b5563">18 cycles from req to ack: 1 Wait, 1 Load, 16 Round.</text>
-  <text x="510" y="274" font-size="11" fill="#4b5563">Fewest instances — one round, one key_sched. One block in flight.</text>
+  <text x="510" y="257" font-size="11" fill="#4b5563">18 cycles req to ack: 1 Wait, 1 Load, 16 Round.</text>
+  <text x="510" y="274" font-size="11" fill="#4b5563">~21 sustained once req/ack handshake turnaround is counted.</text>
+  <text x="510" y="291" font-size="11" fill="#4b5563">Fewest instances: one round, one key_sched. One block in flight.</text>
 
-  <!-- ================= PIPELINED ================= -->
+  <!-- PIPELINED -->
   <text x="24" y="364" font-size="13" font-weight="600" fill="#1a1a2e">encrypt_pipe — 16 rounds unrolled, registers between each</text>
   <rect x="24" y="376" width="832" height="76" rx="6" fill="#ffffff" stroke="#c9ccd6"/>
 
@@ -88,8 +89,8 @@
 
   <rect x="420" y="396" width="48" height="38" rx="4" fill="#e8ecf7" stroke="#5566a8"/>
   <text x="444" y="420" text-anchor="middle" font-size="11" fill="#2a3560">FP</text>
-  <rect x="472" y="396" width="14" height="38" rx="2" fill="#fdeedd" stroke="#c07a2c"/>
-  <text x="479" y="390" text-anchor="middle" font-size="8" fill="#8a5316">merge2out</text>
+  <rect x="474" y="396" width="14" height="38" rx="2" fill="#fdeedd" stroke="#c07a2c"/>
+  <text x="481" y="390" text-anchor="middle" font-size="8" fill="#8a5316">merge2out</text>
 
   <line x1="92" y1="415" x2="104" y2="415" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
   <line x1="184" y1="415" x2="194" y2="415" stroke="#4b5563" stroke-width="1.4" marker-end="url(#ar)"/>
@@ -99,7 +100,7 @@
 
   <text x="510" y="401" font-size="11" fill="#4b5563">Orange bars are the pipeline registers (xl, xr, kx per stage).</text>
   <text x="510" y="418" font-size="11" fill="#4b5563">17 registered stages: 16 rounds plus the merge2out output register.</text>
-  <text x="510" y="435" font-size="11" fill="#4b5563">16 round instances; accepts a new block every cycle once full.</text>
+  <text x="510" y="435" font-size="11" fill="#4b5563">16 round instances; no handshake, so one block per cycle once full.</text>
 
   <defs>
     <marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="2.5" orient="auto">
