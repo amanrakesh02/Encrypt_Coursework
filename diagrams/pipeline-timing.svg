@@ -7,15 +7,14 @@
   <g font-size="10" fill="#6b7280">
     <text x="24" y="106">round unit</text>
   </g>
-  <g>
-    <rect x="100" y="94" width="240" height="18" fill="#dff0e4" stroke="#3f8656"/>
-    <text x="220" y="107" text-anchor="middle" font-size="10" fill="#24583a">message A — 18 cycles</text>
-    <rect x="340" y="94" width="240" height="18" fill="#e8ecf7" stroke="#5566a8"/>
-    <text x="460" y="107" text-anchor="middle" font-size="10" fill="#2a3560">message B — 18 cycles</text>
-    <rect x="580" y="94" width="240" height="18" fill="#fdeedd" stroke="#c07a2c"/>
-    <text x="700" y="107" text-anchor="middle" font-size="10" fill="#8a5316">message C — 18 cycles</text>
-  </g>
-  <text x="100" y="132" font-size="11" fill="#4b5563">Three messages take 54 cycles, plus handshake turnaround between them.</text>
+  <rect x="100" y="94" width="240" height="18" fill="#dff0e4" stroke="#3f8656"/>
+  <text x="220" y="107" text-anchor="middle" font-size="10" fill="#24583a">message A — 18 cycles</text>
+  <rect x="340" y="94" width="240" height="18" fill="#e8ecf7" stroke="#5566a8"/>
+  <text x="460" y="107" text-anchor="middle" font-size="10" fill="#2a3560">message B — 18 cycles</text>
+  <rect x="580" y="94" width="240" height="18" fill="#fdeedd" stroke="#c07a2c"/>
+  <text x="700" y="107" text-anchor="middle" font-size="10" fill="#8a5316">message C — 18 cycles</text>
+
+  <text x="100" y="132" font-size="11" fill="#4b5563">Three messages take about 63 cycles once req/ack handshake turnaround is counted.</text>
 
   <text x="24" y="176" font-size="13" font-weight="600" fill="#1a1a2e">Pipelined — a new message enters every cycle</text>
 
@@ -30,7 +29,7 @@
 
   <g stroke="#e5e7eb" stroke-width="1">
     <line x1="100" y1="190" x2="820" y2="190"/>
-    <line x1="100" y1="320" x2="820" y2="320"/>
+    <line x1="100" y1="322" x2="820" y2="322"/>
   </g>
 
   <rect x="100" y="192" width="36" height="16" fill="#dff0e4" stroke="#3f8656"/>
@@ -58,11 +57,11 @@
 
   <text x="248" y="264" font-size="14" fill="#9ca3af">⋱</text>
 
-  <path d="M 100 332 L 100 340 L 376 340 L 376 332" fill="none" stroke="#c0392b" stroke-width="1.4"/>
-  <text x="238" y="356" text-anchor="middle" font-size="11" fill="#c0392b">latency for message A: 17 cycles — 16 rounds plus the output register</text>
+  <path d="M 100 334 L 100 342 L 376 342 L 376 334" fill="none" stroke="#c0392b" stroke-width="1.4"/>
+  <text x="238" y="358" text-anchor="middle" font-size="11" fill="#c0392b">latency for message A: 17 cycles — 16 rounds plus the output register</text>
 
-  <path d="M 100 368 L 100 376 L 136 376 L 136 368" fill="none" stroke="#3f8656" stroke-width="1.4"/>
-  <text x="150" y="382" font-size="11" fill="#24583a">initiation interval: 1 cycle — this is where the throughput comes from</text>
+  <path d="M 100 370 L 100 378 L 136 378 L 136 370" fill="none" stroke="#3f8656" stroke-width="1.4"/>
+  <text x="150" y="384" font-size="11" fill="#24583a">initiation interval: 1 cycle — this is where the throughput comes from</text>
 
   <text x="24" y="412" font-size="11" fill="#4b5563">Latency per message barely changes. What changes is that 17 messages are in flight at once, so once the pipe is</text>
   <text x="24" y="428" font-size="11" fill="#4b5563">full one ciphertext emerges per cycle instead of one per eighteen — at the cost of 16 copies of the round logic.</text>
